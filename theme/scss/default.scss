@@ -1058,3 +1058,64 @@ aside.gdbar {
     font-family: monospace !important;
   }
 }
+
+
+.box {
+   border: 1px solid lightgrey;
+   border-radius:  5px 0 5px 0 ;
+   margin-bottom: 10px;
+
+   > * {
+      overflow: hidden;
+      padding: 5px;
+   }
+
+   header{
+      background: lightgrey;
+      padding: 0 5px;
+      min-height: 10px;
+   }
+
+   &.greenbox, &.redbox, &.bluebox, &.orangebox, &.yellowbox {
+      header{
+         h3{
+            color: white;
+         }
+      }
+   }
+
+   &.greenbox {
+      header{
+         background: $brand-green;
+      }
+      border-color: $brand-green;
+   }
+
+   &.redbox {
+      header{
+         background: $brand-red ;
+      }
+      border-color: $brand-red;
+   }
+
+   &.orangebox {
+      header{
+         background: $brand-orange-citius;
+      }
+      border-color: $brand-orange-citius;
+   }
+
+   &.bluebox {
+      header{
+         background: $brand-blue;
+      }
+      border-color: $brand-blue;
+   }
+
+   &.yellowbox {
+      header{
+         background: $brand-yellow;
+      }
+      border-color: $brand-yellow;
+   }
+}
