@@ -392,6 +392,48 @@ SlideDeck.prototype.loadConfig_ = function(config) {
         dataConfigPresenter.innerHTML += settings.eventInfo.title + dateInfo;
       }
     }
+
+    //Sections
+    html = [];
+    var indexName = this.config_.indexName || 'Contents';
+    var sections = this.config_.sections;
+    if(!sections){ //If sections is not part of the config
+       sections = [];
+       this.sections = this.container.querySelectorAll('slide.isection');
+       for (var i = 0, section; section=this.sections[i]; i++) {
+          sections.push({
+            title: section.dataset.isectionTitle,
+            subtitle: section.dataset.isectionSubtitle
+          })
+          //html.push(section.dataset.isectionTitle);
+       }
+    }
+    if(sections){
+       for(var i=0, s; s=sections[i]; i++){
+          html.push(sections[i].title);
+       }
+       html = '<li>' + html.join('</li><li>') + '</li>';
+       var dataConfigIndex = document.querySelector('[data-config-index]');
+       if(dataConfigIndex){
+          dataConfigIndex.innerHTML = '<hgroup><h2>' + indexName + '</h2></hgroup>'
+             + '<ol class="index">'
+             + html
+             + '</ol>';
+       }
+       //For each section
+       for (var i = 0, section; section=this.sections[i]; i++) {
+          section.innerHTML = '<hgroup><h2>' + indexName + '</h2></hgroup>'
+             + '<ol class="index">'
+             + html
+             + '</ol>';
+          var lis = section.querySelectorAll("li");
+          for(var j=0, li; i>j ; j++){
+             lis[j].className='fade';
+          }
+          lis[i].className='current';
+       }
+    }
+
   }
 
   /* Left/Right tap areas. Default to including. */

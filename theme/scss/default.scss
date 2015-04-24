@@ -1128,6 +1128,19 @@ ol {
    padding-right: 0;
    list-style-type: none;
 
+   &.index {
+      margin-top: 40px;
+      font-size: 1.2em;
+
+      .fade {
+         opacity: 0.3;
+      }
+
+      .current {
+         color: $brand-orange-citius;
+      }
+   }
+
    li {
       counter-increment: step-counter;
       margin-bottom: 0.8em;

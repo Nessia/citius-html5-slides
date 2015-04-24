@@ -17,6 +17,7 @@ var SLIDE_CONFIG = {
       'Source Code Pro'
     ],
     //theme: ['mytheme'], // Add your own custom themes or styles in /theme/css. Leave off the .css extension.
+    indexName: 'Contents'
   },
 
   // Author information
