@@ -341,6 +341,9 @@ SlideDeck.prototype.loadConfig_ = function(config) {
     if (settings.eventInfo && settings.eventInfo.title) {
       document.title +=  ' - ' + settings.eventInfo.title;
     }
+    if (settings.eventInfo && settings.eventInfo.location) {
+        document.title +=  ' - ' + settings.eventInfo.location;
+    }
     document.querySelector('[data-config-title]').innerHTML = settings.title;
   }
 
@@ -408,7 +411,8 @@ SlideDeck.prototype.loadConfig_ = function(config) {
       if (settings.eventInfo) {
         var date = settings.eventInfo.date;
         var dateInfo = date ? ' - <time>' + date + '</time>' : '';
-        dataConfigPresenter.innerHTML += settings.eventInfo.title + dateInfo;
+        var location = settings.eventInfo.location? ' - ' + settings.eventInfo.location : '';
+        dataConfigPresenter.innerHTML += settings.eventInfo.title + location + dateInfo;
       }
     }
 

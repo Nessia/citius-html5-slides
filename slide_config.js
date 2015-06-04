@@ -5,7 +5,8 @@ var SLIDE_CONFIG = {
     subtitle: 'Subtitle Goes Here',
     //eventInfo: {
     //  title: 'Doctoral Meeting',
-    //  date: '6/x/2013'
+    //  date: '6/x/2013',
+    //  location: 'Santiago de Compostela'
     //},
     useBuilds: true, // Default: true. False will turn off slide animation builds.
     usePrettify: true, // Default: true
