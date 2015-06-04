@@ -178,7 +178,7 @@ slides > slide {
     }
   }
 
-  > hgroup + article {
+  > header + article {
     margin-top: $article-content-top-padding;
 
     &.flexbox {
@@ -302,21 +302,24 @@ ul {
     margin-bottom: 0.5em;
 
     ul {
+      font-size: 0.9em;
       margin-left: 2em;
       margin-bottom: 0;
 
       li:before {
-        content: '-';
+        content: '\00B7'; /*'-';*/
         font-weight: 600;
+        color: $brand-orange-citius;
       }
     }
   }
 
   > li:before {
-    content: '\00B7';
+    content: '■';
     margin-left: -1em;
     position: absolute;
     font-weight: 600;
+    color: $brand-orange-citius;
   }
 
   ul {
@@ -498,7 +501,7 @@ table {
     padding: 1em 0.5em;
   }
 
-  td.highlight {
+  td.highlight, tr.highlight td {
     color: $gray-4;
     background-color: $brand-orange-citius-light;
     /*@include background(linear-gradient(top, #ffd14d, #fff) no-repeat);*/
@@ -756,6 +759,14 @@ article.smaller {
   width: 100%;
 }
 
+span.highlight {
+   background: $brand-yellow;
+   padding: 2px;
+   weight: bold;
+   @include transition(opacity 0.6s ease-in 3s);
+   color: black;
+}
+
 .flexbox.vleft {
   @include flex-left-center;
   height: 100%;
@@ -821,7 +832,7 @@ article.smaller {
     color: $gray-1;
     line-height: 2.8;
   }
-  hgroup {
+  header {
     position: absolute;
     bottom: 225px;
   }
@@ -898,7 +909,7 @@ aside.gdbar {
 
 .title-slide {
 
-  hgroup {
+  header {
     bottom: 100px;
 
     h1 {
@@ -952,7 +963,7 @@ aside.gdbar {
       display: none !important;
     }
   }
-  
+
   slides {
     slide {
       &.backdrop {
@@ -987,11 +998,17 @@ aside.gdbar {
 }
 
 @media print {
+
+  body {
+   background: none !important;
+  }
+
   slides {
     slide {
       display: block !important;
       position: relative;
-      @include backdrop();
+      /*@include backdrop();*/
+      background: white !important;
       @include transform(none !important);
       width: 100%;
       height: 100%;
@@ -1035,9 +1052,13 @@ aside.gdbar {
       table.rows {
         border-right: 0;
       }
+
+      .note {
+        opacity: 0 !important;
+      }
     }
 
-    slide[hidden] {
+    slide[hidden], slide.not-print {
       display: none !important;
     }
   }
@@ -1061,27 +1082,27 @@ aside.gdbar {
 
 
 .box {
-   border: 1px solid lightgrey;
+   border: 1px solid grey;
    border-radius:  5px 0 5px 0 ;
    margin-bottom: 10px;
 
    > * {
-      overflow: hidden;
       padding: 5px;
+      margin-bottom: 0;
    }
 
    header{
-      background: lightgrey;
+      background: grey;
       padding: 0 5px;
       min-height: 10px;
-   }
+      border-radius: 3px 0 0 0;
 
-   &.greenbox, &.redbox, &.bluebox, &.orangebox, &.yellowbox {
-      header{
-         h3{
-            color: white;
-         }
+      h3, h4, h5{
+         color: white;
       }
+   }
+   ul li:before {
+         color: grey;
    }
 
    &.greenbox {
@@ -1089,6 +1110,9 @@ aside.gdbar {
          background: $brand-green;
       }
       border-color: $brand-green;
+      ul li:before {
+         color: $brand-green;
+      }
    }
 
    &.redbox {
@@ -1096,6 +1120,9 @@ aside.gdbar {
          background: $brand-red ;
       }
       border-color: $brand-red;
+      ul li:before {
+         color: $brand-red;
+      }
    }
 
    &.orangebox {
@@ -1103,6 +1130,9 @@ aside.gdbar {
          background: $brand-orange-citius;
       }
       border-color: $brand-orange-citius;
+      ul li:before {
+         color: $brand-orange-citius;
+      }
    }
 
    &.bluebox {
@@ -1110,6 +1140,10 @@ aside.gdbar {
          background: $brand-blue;
       }
       border-color: $brand-blue;
+
+      ul li:before {
+         color: $brand-blue;
+      }
    }
 
    &.yellowbox {
@@ -1117,10 +1151,11 @@ aside.gdbar {
          background: $brand-yellow;
       }
       border-color: $brand-yellow;
+      ul li:before {
+         color: $brand-yellow;
+      }
    }
 }
-
-
 
 ol {
    margin-top: 20px;
@@ -1154,7 +1189,6 @@ ol {
        font-weight: bold;
        padding: 3px 10px;
    }
+
 }
-
-
 
