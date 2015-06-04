@@ -1,20 +1,20 @@
 <!--
    CiTIUS HTML5 Slide Template is based on the
-   GoogleIO Slide Template. 
-   
+   GoogleIO Slide Template.
+
    Original credits:
-   
+
        Google IO 2012/2013 HTML5 Slide Template
-   
+
        Authors: Eric Bidelman <ebidel@gmail.com>
-   	    Luke Mahé <lukem@google.com>
-   
+          Luke Mahé <lukem@google.com>
+
        URL: https://code.google.com/p/io-2012-slides
-       
-   
-   Modifications of the original GoogleIO HTML5 Slide Template 
+
+
+   Modifications of the original GoogleIO HTML5 Slide Template
    are released under the same license (Apache 2.0 License).
-   
+
    Pablo Rodríguez Mier
    -->
 <!DOCTYPE html>
@@ -27,17 +27,17 @@
       <!--<meta name="viewport" content="width=device-width, initial-scale=1.0">-->
       <!--This one seems to work all the time, but really small on ipad-->
       <!--<meta name="viewport" content="initial-scale=0.4">-->
-      <meta name="apple-mobile-web-app-capable" content="yes">      
+      <meta name="apple-mobile-web-app-capable" content="yes">
       <link rel="stylesheet" media="all" href="theme/css/default.css">
       <link rel="stylesheet" media="only screen and (max-device-width: 480px)" href="theme/css/phone.css">
       <base target="_blank">
-      
+
       <!-- Use KateX for Tex support -->
       <link rel="stylesheet" href="js/katex/katex.min.css">
       <!-- TODO: Should be loaded with require.js -->
       <script src="js/katex/katex.min.js" type="text/javascript"></script>
       <!-- -->
-      
+
       <!-- This amazingness opens all links in a new tab. -->
       <script data-main="js/slides" src="js/require-1.0.8.min.js"></script>
    </head>
@@ -50,8 +50,8 @@
          </slide>
          <slide class="title-slide segue nobackground">
             <aside class="gdbar"><img src="images/citius-logo-128.png"></aside>
-            <!-- The content of this hgroup is replaced programmatically through the slide_config.json. -->
-            <hgroup class="auto-fadein">
+            <!-- The content of this header is replaced programmatically through the slide_config.json. -->
+            <header class="auto-fadein">
                <h1 data-config-title>
                   <!-- populated from slide_config.json -->
                </h1>
@@ -61,7 +61,7 @@
                <p data-config-presenter>
                   <!-- populated from slide_config.json -->
                </p>
-            </hgroup>
+            </header>
          </slide>
 
          <!--  Index -->
@@ -74,15 +74,15 @@
          </slide>
 
          <slide>
-            <hgroup>
+            <header>
                <h2>Index and Section Slides</h2>
-            </hgroup>
+            </header>
             <article>
-               <p>Sections can be build using the class name <code>isection</code> in a slide. Then add a title for the 
-                  section with the data attribute <code>data-isection-title</code> and an optional subtitle with 
+               <p>Sections can be build using the class name <code>isection</code> in a slide. Then add a title for the
+                  section with the data attribute <code>data-isection-title</code> and an optional subtitle with
                   <code>data-isection-subtitle</code>.
                </p>
-               <p>If you want a general index with all sections displayed just add an empty slide with the 
+               <p>If you want a general index with all sections displayed just add an empty slide with the
                   attribute <code>data-config-index</code></p>
                <p>The default title for this slides is <code>Contents</code>, but you can change it in the configuration file.
             </article>
@@ -93,9 +93,9 @@
          </slide>
 
          <slide>
-            <hgroup>
+            <header>
                <h2>Slide with Bullets</h2>
-            </hgroup>
+            </header>
             <article>
                <ul>
                   <li>Titles are formatted as Open Sans with bold applied and font size is set at 45</li>
@@ -111,10 +111,10 @@
             </article>
          </slide>
          <slide>
-            <hgroup>
+            <header>
                <h2>Slide with Bullets that Build</h2>
                <h3>Subtitle Placeholder</h3>
-            </hgroup>
+            </header>
             <article>
                <p>A list where items build:</p>
                <ul class="build">
@@ -134,9 +134,9 @@
             </article>
          </slide>
          <slide>
-            <hgroup>
+            <header>
                <h2>Slide with (Smaller Font)</h2>
-            </hgroup>
+            </header>
             <article class="smaller">
                <ul>
                   <li>All <a href="http://citius.usc.es">links</a> open in new tabs.</li>
@@ -146,7 +146,7 @@
          </slide>
 
          <slide>
-            <hgroup><h2>Colourful boxes</h2></hgroup>
+            <header><h2>Colourful boxes</h2></header>
             <article>
                <div class="box">
                   <header></header>
@@ -176,10 +176,10 @@
          </slide>
 
          <slide>
-            <hgroup>
+            <header>
                <h2>Code Slide (with Subtitle Placeholder)</h2>
                <h3>Subtitle Placeholder</h3>
-            </hgroup>
+            </header>
             <article>
                <p>Press 'h' to highlight important sections of code (wrapped in <code>&lt;b&gt;</code>).</p>
                <pre class="prettyprint" data-lang="javascript">
@@ -196,9 +196,9 @@
             </article>
          </slide>
          <slide>
-            <hgroup>
+            <header>
                <h2>Code Slide (Smaller Font)</h2>
-            </hgroup>
+            </header>
             <article class="smaller">
                <pre class="prettyprint" data-lang="javascript">
 // Say hello world until the user starts questioning
@@ -228,36 +228,36 @@ function helloWorld(world) {
 </pre>
             </article>
          </slide>
-         
+
          <slide>
-	  <hgroup>
-	    <h2>Using <span id="katexword"></span> for math rendering</h2>
-	    <script>
-	      katex.render("\\KaTeX", katexword);
-	    </script>
-	  </hgroup>
-	  <br/>
-	  <ul>
-	    <li><a href="http://khan.github.io/KaTeX/">KaTeX</a> is a fast JavaScript library for TeX math rendering on the web.</li>
-	    <li>To render a math expression, use <code>katex.render()</code>:</li>
-	  </ul>
-	  <article class="smaller">
-	      <pre class="prettyprint" data-lang="javascript">
+     <header>
+       <h2>Using <span id="katexword"></span> for math rendering</h2>
+       <script>
+         katex.render("\\KaTeX", katexword);
+       </script>
+     </header>
+     <br/>
+     <ul>
+       <li><a href="http://khan.github.io/KaTeX/">KaTeX</a> is a fast JavaScript library for TeX math rendering on the web.</li>
+       <li>To render a math expression, use <code>katex.render()</code>:</li>
+     </ul>
+     <article class="smaller">
+         <pre class="prettyprint" data-lang="javascript">
 &lt;script type='text/javascript'&gt;
   // elementId is the id of a DOM element to render into
   katex.render("f(x) = \\int_{-\\infty}^\\infty \\hat f(\\xi) e^{2 \\pi i \\xi x} d\\xi", elementId);
 &lt;/script&gt;
-	      </pre>
-	    </article>
-	    <div class="centered">
-	      <p id="katexeq1"></p>
-	      <script>
-		katex.render("\\displaystyle f(x) = \\int_{-\\infty}^\\infty \\hat f(\\xi) e^{2 \\pi i \\xi x} d\\xi", katexeq1);
-	      </script>
-	    </div>
-	    
+         </pre>
+       </article>
+       <div class="centered">
+         <p id="katexeq1"></p>
+         <script>
+      katex.render("\\displaystyle f(x) = \\int_{-\\infty}^\\infty \\hat f(\\xi) e^{2 \\pi i \\xi x} d\\xi", katexeq1);
+         </script>
+       </div>
+
          </slide>
-         
+
 
          <slide class="isection" data-isection-title="Notes">
             <!-- Populated from slide-deck.js -->
@@ -275,9 +275,9 @@ function helloWorld(world) {
                   <p><b>Remember to say this tag line!</b></p>
                </section>
             </aside>
-            <hgroup>
+            <header>
                <h2>Slide with Speaker Notes</h2>
-            </hgroup>
+            </header>
             <article>
                <p>Press 'p' to toggle speaker notes.</p>
             </article>
@@ -291,9 +291,9 @@ function helloWorld(world) {
                   <p><b>Remember to say this tag line!</b></p>
                </section>
             </aside>
-            <hgroup>
+            <header>
                <h2>Presenter Mode</h2>
-            </hgroup>
+            </header>
             <article>
                <p>Add <code><a href="?presentme=true" target="_self">?presentme=true</a></code> to the URL to enabled presenter mode.
                   This setting is sticky, meaning refreshing the page will persist presenter
@@ -308,28 +308,28 @@ function helloWorld(world) {
          </slide>
 
          <slide>
-            <hgroup>
+            <header>
                <h2>Slide with Image</h2>
-            </hgroup>
+            </header>
             <article>
                <img src="images/chart.png" class="reflect" alt="Description" title="Description">
                <footer class="source">source: place source info here</footer>
             </article>
          </slide>
          <slide>
-            <hgroup>
+            <header>
                <h2>Slide with Image (Centered horz/vert)</h2>
-            </hgroup>
+            </header>
             <article class="flexbox vcenter">
                <img src="images/barchart.png" alt="Description" title="Description">
                <footer class="source">source: place source info here</footer>
             </article>
          </slide>
          <slide>
-            <hgroup>
+            <header>
                <h2>Table Option A</h2>
                <h3>Subtitle Placeholder</h3>
-            </hgroup>
+            </header>
             <article>
                <table>
                   <tr>
@@ -378,10 +378,10 @@ function helloWorld(world) {
             </article>
          </slide>
          <slide>
-            <hgroup>
+            <header>
                <h2>Table Option A (Smaller Text)</h2>
                <h3>Subtitle Placeholder</h3>
-            </hgroup>
+            </header>
             <article class="smaller">
                <table>
                   <tr>
@@ -430,10 +430,10 @@ function helloWorld(world) {
             </article>
          </slide>
          <slide>
-            <hgroup>
+            <header>
                <h2>Table Option B</h2>
                <h3>Subtitle Placeholder</h3>
-            </hgroup>
+            </header>
             <article>
                <table class="rows">
                   <tr>
@@ -470,9 +470,9 @@ function helloWorld(world) {
             </article>
          </slide>
          <slide>
-            <hgroup>
+            <header>
                <h2>Slide Styles</h2>
-            </hgroup>
+            </header>
             <article class="smaller">
                <div class="columns-2">
                   <ul>
@@ -503,15 +503,15 @@ function helloWorld(world) {
          </slide>
          <slide class="segue dark nobackground">
             <aside class="gdbar"><img src="images/citius-logo-128.png"></aside>
-            <hgroup class="auto-fadein">
+            <header class="auto-fadein">
                <h2>Segue Slide</h2>
                <h3>Subtitle Placeholder</h3>
-            </hgroup>
+            </header>
          </slide>
          <slide class="fill nobackground" style="background-image: url(images/citius-building.jpg)">
-            <hgroup>
+            <header>
                <h2 class="white quotebox">Full Image (with Optional Header)</h2>
-            </hgroup>
+            </header>
             <footer class="source white">http://citius.usc.es</footer>
          </slide>
          <slide class="segue dark quote nobackground">
@@ -527,9 +527,9 @@ function helloWorld(world) {
             </article>
          </slide>
          <slide>
-            <hgroup>
+            <header>
                <h2>Slide with Iframe</h2>
-            </hgroup>
+            </header>
             <article>
                <iframe data-src="http://mbostock.github.io/d3/talk/20111116/force-collapsible.html"></iframe>
             </article>
@@ -542,9 +542,9 @@ function helloWorld(world) {
          </slide>
          -->
          <slide>
-	    <article>
-		<iframe data-src="http://froosky.rwell.org/graphosaurus/examples/eve/"></iframe>
-	    </article>
+       <article>
+      <iframe data-src="http://froosky.rwell.org/graphosaurus/examples/eve/"></iframe>
+       </article>
          </slide>
          <slide class="thank-you-slide segue nobackground">
             <aside class="gdbar right"><img src="images/citius-logo-128.png"></aside>
@@ -562,9 +562,34 @@ function helloWorld(world) {
             </article>
          </slide>
          <slide class="backdrop"></slide>
+
+         <div class="help">
+           <section>
+               <header><h2>Help</h2></header>
+               <p>Pressing</p>
+              <ul>
+                <li><kbd>m</kbd> shows this help</li>
+                <li><kbd>h</kbd> highlights code snippets</li>
+                <li><kbd>p</kbd> toggles speaker notes (if they're on the current slide)</li>
+                <li><kbd>f</kbd> toggles fullscreen viewing</li>
+                <li><kbd>w</kbd> toggles widescreen</li>
+                <li><kbd>o</kbd> toggles overview mode</li>
+                <li><kbd>ESC</kbd> toggles off all the goodies</li>
+                <li>Navigation
+                  <ul>
+                     <li><kbd>&rarr;</kbd>,'Page up'  next slide</li>
+                     <li><kbd>&larr;</kbd>, 'Page down' previous slide</li>
+                     <li><kbd>SHIFT</kbd>+<kbd>Home</kbd>: first slide </li>
+                     <li><kbd>SHIFT</kbd>+<kbd>End</kbd>: last slide </li>
+                  </ul>
+                </li>
+              </ul>
+            </section>
+         </div>
+
       </slides>
-      
-      
+
+
       <!--[if IE]>
       <script src="http://ajax.googleapis.com/ajax/libs/chrome-frame/1/CFInstall.min.js"></script>
       <script>CFInstall.check({mode: 'overlay'});</script>

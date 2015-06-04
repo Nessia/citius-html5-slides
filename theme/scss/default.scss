@@ -58,20 +58,22 @@ body {
   background: black;
   background-image: url(../../images/subtlepatterns/robots.png);
   background-repeat: repeat;
+  line-height: 1.2;
 }
 
-slides > slide {
+slides > slide, .help {
+  @include border-radius($slide-border-radius);
+
+  color: $gray-3;
   display: none;
   font-family: 'Open Sans', Arial, sans-serif;
   font-size: 26px;
-  color: $gray-3;
-  //@include background(linear-gradient(white, white 85%, $gray-1));
-  //background-color: white;
   width: $slide-width;
   height: $slide-height;
   margin-left: -$slide-width / 2;
   margin-top: -$slide-height / 2;
   padding: $slide-top-bottom-padding $slide-left-right-padding;
+}
 
   @include border-radius($slide-border-radius);
   //@include box-shadow(5px 5px 20px $gray-4);
@@ -201,7 +203,7 @@ slides > slide {
   }
 }
 
-slides.layout-faux-widescreen > slide {
+slides.layout-faux-widescreen > slide, slides.layout-faux-widescreen .help {
   padding: $slide-top-bottom-padding 160px;
 }
 
@@ -210,7 +212,7 @@ slides.layout-faux-widescreen {
 
   $translateX: 1130px;
 
-  > slide {
+  > slide, > .help {
     margin-left: -$slide-width-widescreen / 2;
     width: $slide-width-widescreen;
   }
@@ -626,23 +628,16 @@ article.smaller {
   color: $gray-4;
 }
 
-.note {
-  position: absolute;
-  z-index: 100;
-  width: 100%;
-  height: 100%;
-  top: 0;
-  left: 0;
-  padding: 1em;
+.note, .help {
   background: rgba(0, 0, 0, 0.3);
-  opacity: 0;
+  position: absolute;
   pointer-events: none;
   @include flexbox;
   @include flex-center-center;
-  @include border-radius($slide-border-radius);
-
   @include box-sizing(border-box);
   @include transform(translateY($slide-height / 2));@include transition(all 0.4s ease-in-out);
+
+  opacity: 0;
 
   > section {
     background: #fff;
@@ -653,8 +648,39 @@ article.smaller {
   }
 }
 
+.help {
+   z-index: 200;
+   font-size: 1.3em;
+   left: 50%;
+   top: 50%;
+   margin-top: -$slide-height;
+   > section {
+      width: 90%;
+   }
+}
+
+.note {
+  @include border-radius($slide-border-radius);
+  z-index: 100;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  padding: 1em;
+}
+
+
+.with-help {
+   .help {
+      opacity: 1;
+      //@include transform(translateY(0));
+      pointer-events: auto; // Allow people to do things like open links embedded in the speaker notes.
+   }
+
+}
+
 // Speaker notes only show the current slide.
-.with-notes {
+.with-notes:not(.with-help) {
 
   &.popup {
 
@@ -1078,6 +1104,11 @@ aside.gdbar {
   pre, code {
     font-family: monospace !important;
   }
+
+  .help {
+    display: none;
+    opacity: 0;
+  }
 }
 
 
@@ -1113,6 +1144,9 @@ aside.gdbar {
       ul li:before {
          color: $brand-green;
       }
+      ol li:before {
+         background-color: $brand-green;
+      }
    }
 
    &.redbox {
@@ -1123,6 +1157,9 @@ aside.gdbar {
       ul li:before {
          color: $brand-red;
       }
+      ol li:before {
+         background-color: $brand-red;
+      }
    }
 
    &.orangebox {
@@ -1132,6 +1169,9 @@ aside.gdbar {
       border-color: $brand-orange-citius;
       ul li:before {
          color: $brand-orange-citius;
+      }
+      ol li:before {
+         background-color: $brand-orange-citius;
       }
    }
 
@@ -1144,6 +1184,10 @@ aside.gdbar {
       ul li:before {
          color: $brand-blue;
       }
+
+      ol li:before {
+         background-color: $brand-blue;
+      }
    }
 
    &.yellowbox {
@@ -1153,6 +1197,9 @@ aside.gdbar {
       border-color: $brand-yellow;
       ul li:before {
          color: $brand-yellow;
+      }
+      ol li:before {
+         background-color: $brand-yellow;
       }
    }
 }
@@ -1191,4 +1238,18 @@ ol {
    }
 
 }
-
+kbd {
+   background-color: #f7f7f7;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    box-shadow: 0 1px 0 rgba(0, 0, 0, 0.2), 0 0 0 2px #fff inset;
+    color: #333;
+    display: inline-block;
+    font-family: Arial,Helvetica,sans-serif;
+    font-size: 11px;
+    line-height: 1.4;
+    margin: 0 0.1em;
+    padding: 0.1em 0.6em;
+    text-shadow: 0 1px 0 #fff;
+    white-space: nowrap;
+}

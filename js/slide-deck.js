@@ -66,6 +66,7 @@ SlideDeck.prototype.onDomLoaded_ = function(e) {
   document.body.classList.add('loaded'); // Add loaded class for templates to use.
 
   this.slides = this.container.querySelectorAll('slide:not([hidden]):not(.hidden):not(.backdrop)');
+  this.help = this.container.querySelectorAll('.help');
 
   // If we're on a smartphone, apply special sauce.
   if (Modernizr.mq('only screen and (max-device-width: 480px)')) {
@@ -177,6 +178,24 @@ SlideDeck.prototype.onBodyKeyDown_ = function(e) {
   }
 
   switch (e.keyCode) {
+    case 77: //M
+      this.showHelp();
+      break;
+
+    case 36: //start
+      if(/*e.ctrlKey &&*/ e.shiftKey){
+         this.loadSlide(1);
+         e.preventDefault();
+      }
+      break;
+
+    case 35: //end
+      if(/*e.ctrlKey &&*/ e.shiftKey){
+         this.loadSlide(this.slides.length);
+         e.preventDefault();
+      }
+      break;
+
     case 13: // Enter
       if (document.body.classList.contains('overview')) {
         this.toggleOverview();
@@ -216,10 +235,9 @@ SlideDeck.prototype.onBodyKeyDown_ = function(e) {
       break;
 
     case 80: // P
-      if (this.controller && this.controller.isPopup) {
+      if (this.controller && (this.controller.isPopup || !this.controller.popup)) {
         document.body.classList.toggle('with-notes');
-      } else if (this.controller && !this.controller.popup) {
-        document.body.classList.toggle('with-notes');
+        document.body.classList.remove('with-help');
       }
       break;
 
@@ -227,8 +245,9 @@ SlideDeck.prototype.onBodyKeyDown_ = function(e) {
       // TODO: implement refresh on main slides when popup is refreshed.
       break;
 
-    case 27: // ESC: Hide notes and highlighting
+    case 27: // ESC: Hide notes, highlighting and help
       document.body.classList.remove('with-notes');
+      document.body.classList.remove('with-help');
       document.body.classList.remove('highlight-code');
 
       if (document.body.classList.contains('overview')) {
@@ -415,17 +434,17 @@ SlideDeck.prototype.loadConfig_ = function(config) {
        html = '<li>' + html.join('</li><li>') + '</li>';
        var dataConfigIndex = document.querySelector('[data-config-index]');
        if(dataConfigIndex){
-          dataConfigIndex.innerHTML = '<hgroup><h2>' + indexName + '</h2></hgroup>'
-             + '<ol class="index">'
+          dataConfigIndex.innerHTML = '<header><h2>' + indexName + '</h2></header>'
+             + '<article><ol class="index">'
              + html
-             + '</ol>';
+             + '</ol></article>';
        }
        //For each section
        for (var i = 0, section; section=this.sections[i]; i++) {
-          section.innerHTML = '<hgroup><h2>' + indexName + '</h2></hgroup>'
-             + '<ol class="index">'
+          section.innerHTML = '<header><h2>' + indexName + '</h2></header>'
+             + '<article><ol class="index">'
              + html
-             + '</ol>';
+             + '</ol></article>';
           var lis = section.querySelectorAll("li");
           for(var j=0, li; i>j ; j++){
              lis[j].className='fade';
@@ -487,6 +506,31 @@ SlideDeck.prototype.addFonts_ = function(fonts) {
 /**
  * @private
  */
+SlideDeck.prototype.highlight_ = function() {
+  var slide = this.slides[this.curSlide_];
+  var toHighlight =  slide.querySelector('.to-highlight');
+  if (toHighlight){
+    var items = slide.querySelectorAll('.to-highlight');
+    for (var j = 0, item; item = items[j]; j++) {
+      item.classList.remove('to-highlight');
+      item.classList.add('highlight');
+     }
+     var rows = slide.querySelectorAll('.to-highlight');
+     return true;
+   }
+   return false;
+}
+
+SlideDeck.prototype.showHelp = function(){
+   //this.help.classList.add('');
+   document.body.classList.remove('with-notes');
+   document.body.classList.toggle('with-help');
+
+};
+
+/**
+ * @private
+ */
 SlideDeck.prototype.buildNextItem_ = function() {
   var slide = this.slides[this.curSlide_];
   var toBuild = slide.querySelector('.to-build');
@@ -520,6 +564,7 @@ SlideDeck.prototype.prevSlide = function(opt_dontPush) {
   if (this.curSlide_ > 0) {
     var bodyClassList = document.body.classList;
     bodyClassList.remove('highlight-code');
+    bodyClassList.remove('with-help');
 
     // Toggle off speaker notes if they're showing when we move backwards on the
     // main slides. If we're the speaker notes popup, leave them up.
@@ -543,10 +588,16 @@ SlideDeck.prototype.nextSlide = function(opt_dontPush) {
     return;
   }
 
+  if (this.highlight_()) {
+    return;
+  }
+
   if (this.curSlide_ < this.slides.length - 1) {
     var bodyClassList = document.body.classList;
+    //Code highlighting
     bodyClassList.remove('highlight-code');
-
+    //Help
+    bodyClassList.remove('with-help');
     // Toggle off speaker notes if they're showing when we advanced on the main
     // slides. If we're the speaker notes popup, leave them up.
     if (this.controller && !this.controller.isPopup) {
@@ -835,4 +886,3 @@ SlideDeck.prototype.loadAnalytics_ = function() {
     }
   });
 })();
-
