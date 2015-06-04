@@ -443,14 +443,14 @@ SlideDeck.prototype.loadConfig_ = function(config) {
           dataConfigIndex.innerHTML = '<header><h2>' + indexName + '</h2></header>'
              + '<article><ol class="index">'
              + html
-             + '</ol></article>';
+             + '</ol></article>' + dataConfigIndex.innerHTML;
        }
        //For each section
        for (var i = 0, section; section=this.sections[i]; i++) {
           section.innerHTML = '<header><h2>' + indexName + '</h2></header>'
              + '<article><ol class="index">'
              + html
-             + '</ol></article>';
+             + '</ol></article>' + section.innerHTML;
           var lis = section.querySelectorAll("li");
           for(var j=0, li; i>j ; j++){
              lis[j].className='fade';
