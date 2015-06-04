@@ -35,27 +35,27 @@ URL: https://code.google.com/p/io-2012-slides
  -->
 <slide class="title-slide segue nobackground">
   <aside class="gdbar"><img src="images/google_developers_icon_128.png"></aside>
-  <!-- The content of this hgroup is replaced programmatically through the slide_config.json. -->
-  <hgroup class="auto-fadein">
+  <!-- The content of this header is replaced programmatically through the slide_config.json. -->
+  <header class="auto-fadein">
     <h1 data-config-title><!-- populated from slide_config.json --></h1>
     <h2 data-config-subtitle><!-- populated from slide_config.json --></h2>
     <p data-config-presenter><!-- populated from slide_config.json --></p>
-  </hgroup>
+  </header>
 </slide>
 
 {% for slide in slides %}
 <slide {% if slide.class %}class="{{- slide.class -}}"{% endif %} {% if slide.image %}style="background-image: url({{- slide.image -}})"{% endif %}>
   {% if 'segue' in slide.class %}
     <aside class="gdbar"><img src="images/google_developers_icon_128.png"></aside>
-    <hgroup class="auto-fadein">
+    <header class="auto-fadein">
       <h2>{{- slide.title -}}</h2>
       <h3>{{- slide.subtitle -}}</h3>
-    </hgroup>
+    </header>
   {% else %}
-    <hgroup>
+    <header>
       <h2>{{- slide.title -}}</h2>
       <h3>{{- slide.subtitle -}}</h3>
-    </hgroup>
+    </header>
     <article {% if slide.content_class %}class="{{- slide.content_class -}}"{% endif %}>
     {{- slide.content -}}
     </article>
