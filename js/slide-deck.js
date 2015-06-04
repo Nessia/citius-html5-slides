@@ -228,6 +228,7 @@ SlideDeck.prototype.onBodyKeyDown_ = function(e) {
 
     case 72: // H: Toggle code highlighting
       document.body.classList.toggle('highlight-code');
+      document.body.classList.toggle('highlight-stuff');
       break;
 
     case 79: // O: Toggle overview
@@ -249,6 +250,7 @@ SlideDeck.prototype.onBodyKeyDown_ = function(e) {
       document.body.classList.remove('with-notes');
       document.body.classList.remove('with-help');
       document.body.classList.remove('highlight-code');
+      document.body.classList.remove('highlight-stuff');
 
       if (document.body.classList.contains('overview')) {
         this.toggleOverview();
@@ -511,17 +513,17 @@ SlideDeck.prototype.addFonts_ = function(fonts) {
  * @private
  */
 SlideDeck.prototype.highlight_ = function() {
-  var slide = this.slides[this.curSlide_];
-  var toHighlight =  slide.querySelector('.to-highlight');
-  if (toHighlight){
-    var items = slide.querySelectorAll('.to-highlight');
-    for (var j = 0, item; item = items[j]; j++) {
-      item.classList.remove('to-highlight');
-      item.classList.add('highlight');
-     }
-     var rows = slide.querySelectorAll('.to-highlight');
-     return true;
+   if(document.body.classList.contains('highlight-stuff')){
+      document.body.classList.remove('highlight-stuff');
+      return false;
    }
+   var slide = this.slides[this.curSlide_];
+   var toHighlight =  slide.querySelector('.to-highlight');
+   if (toHighlight){
+      document.body.classList.add('highlight-stuff');
+      return true;
+   }
+
    return false;
 }
 
@@ -568,6 +570,7 @@ SlideDeck.prototype.prevSlide = function(opt_dontPush) {
   if (this.curSlide_ > 0) {
     var bodyClassList = document.body.classList;
     bodyClassList.remove('highlight-code');
+    bodyClassList.remove('highlight-stuff');
     bodyClassList.remove('with-help');
 
     // Toggle off speaker notes if they're showing when we move backwards on the
@@ -588,11 +591,13 @@ SlideDeck.prototype.prevSlide = function(opt_dontPush) {
  * @param {boolean=} opt_dontPush
  */
 SlideDeck.prototype.nextSlide = function(opt_dontPush) {
-  if (!document.body.classList.contains('overview') && this.buildNextItem_()) {
+  if (!document.body.classList.contains('overview')
+        && this.buildNextItem_()) {
     return;
   }
 
-  if (this.highlight_()) {
+  if (!document.body.classList.contains('overview')
+           && this.highlight_()) {
     return;
   }
 

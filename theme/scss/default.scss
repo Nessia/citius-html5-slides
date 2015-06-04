@@ -75,7 +75,11 @@ slides > slide, .help {
   padding: $slide-top-bottom-padding $slide-left-right-padding;
 }
 
-  @include border-radius($slide-border-radius);
+slides > slide {
+
+  //@include background(linear-gradient(white, white 85%, $gray-1));
+  //background-color: white;
+
   //@include box-shadow(5px 5px 20px $gray-4);
   @include transition(all 0.6s ease-in-out);
 
@@ -329,6 +333,23 @@ ul {
   }
 }
 
+// Stuff highlighting only affects the current slide.
+.highlight-stuff slide.current {
+   tr{
+      &.to-highlight td, td.to-highlight {
+         color: $gray-4;
+         background-color: $brand-orange-citius-light;
+      }
+   }
+   span.to-highlight {
+      background: $brand-yellow;
+      padding: 2px;
+      weight: bold;
+      @include transition(opacity 0.6s ease-in 1s);
+      color: black;
+   }
+}
+
 // Code highlighting only effects the current slide.
 .highlight-code slide.current {
   pre > * {
@@ -491,6 +512,18 @@ table {
     background-color: $gray-1;
   }
 
+  tr{
+    /* Highlighted class is reserved, use highlight instead */
+    &.highlight td, td.highlight  {
+      color: $gray-4;
+      background-color: $brand-orange-citius-light;
+      /*@include background(linear-gradient(top, #ffd14d, #fff) no-repeat);*/
+    }
+
+    &.highlight th, th.highlight {
+    }
+  }
+
   th {
     color: white;
     font-size: 18px;
@@ -501,12 +534,6 @@ table {
   td, th {
     font-size: 18px;
     padding: 1em 0.5em;
-  }
-
-  td.highlight, tr.highlight td {
-    color: $gray-4;
-    background-color: $brand-orange-citius-light;
-    /*@include background(linear-gradient(top, #ffd14d, #fff) no-repeat);*/
   }
 
   &.rows {
